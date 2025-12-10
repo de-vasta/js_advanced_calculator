@@ -8,23 +8,20 @@ function makeCalculator() {
     result: 0,
     add(arg) {
       this.result += arg;
-
-      return this;
     },
     subtract(arg) {
       this.result -= arg;
-
-      return this;
     },
     multiply(arg) {
       this.result *= arg;
-
-      return this;
     },
     divide(arg) {
-      this.result /= arg;
+      if (!arg || arg === 0) {
+        this.reset();
+        throw new Error('Cannot divide by zero');
+      }
 
-      return this;
+      this.result /= arg;
     },
     reset(arg) {
       this.result = 0;
